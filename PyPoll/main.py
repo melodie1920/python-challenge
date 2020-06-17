@@ -48,8 +48,6 @@ candidateCountList = [khanCount, correyCount, liCount, otooleyCount]
 
 maxvotesindex = candidateCountList.index(max(candidateCountList))
 
-print(maxvotesindex)
-
 # print results to terminal
 print("Election Results")
 print("------------------------------")
