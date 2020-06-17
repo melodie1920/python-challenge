@@ -6,6 +6,7 @@ import csv
 # Path to collect data from the Resources folder
 budget_csv = os.path.join("Resources", "budget_data.csv")
 
+# Declare variables need in calculations
 totalMonths = []
 totalMoney = 0
 totalChange = 0
@@ -24,8 +25,10 @@ with open(budget_csv, 'r') as csvfile:
     # Split the data on commas
     csvreader = csv.reader(csvfile, delimiter=',')
 
+    # skip header row
     csv_reader = next(csvreader)
 
+    # loop through the rows in the table to get the needed results
     for row in csvreader:
         
         totalMonths.append(row[0]) 
@@ -50,6 +53,7 @@ with open(budget_csv, 'r') as csvfile:
 totalMonthCount = len(totalMonths)
 averageChange = totalChange / (totalMonthCount - 1)
 
+# print results to terminal
 print("Financial Analysis")
 print("------------------------------")
 print(f'Total Months: {totalMonthCount}')
@@ -58,6 +62,7 @@ print('Average Change: $' + str(round(averageChange,2)))
 print(f'Greatest Increase in Profits: {greatestIncreaseMonth} (${greatestIncreaseValue})')
 print(f'Greatest Decrease in Profits: {greatestDecreaseMonth} (${greatestDecreaseValue})')
 
+# create text file to append the results
 outputpath = os.path.join("analysis","financial_analysis.txt")
 
 with open(outputpath,'w', newline='') as textfile:
@@ -67,6 +72,6 @@ with open(outputpath,'w', newline='') as textfile:
     textfile.write(f'Total: ${totalMoney}' + '\n')
     textfile.write('Average Change: $' + str(round(averageChange,2)) + '\n')
     textfile.write(f'Greatest Increase in Profits: {greatestIncreaseMonth} (${greatestIncreaseValue})' + '\n')
-    textfile.write(f'Greatest Decrease in Profits: {greatestDecreaseMonth} (${greatestDecreaseValue})' + '\n')
+    textfile.write(f'Greatest Decrease in Profits: {greatestDecreaseMonth} (${greatestDecreaseValue})')
 
     textfile.close()
